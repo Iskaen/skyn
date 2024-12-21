@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Center content vertically and horizontally */
+        body {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5e7f7;
+        }
+
+        
+        button {
+            border:2px solid black;
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #eac7f8;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px; 
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        
+        #display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 90%; 
+            margin-top: 20px;
+        }
+
+        
+        #display img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover; 
+        }
+
+        
+        @media (max-width: 700px) {
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="loadimg()">Generate random image</button>
+    <div id="display"></div>
+    
+    <script>
+        function loadimg() {
+            fetch("https://picsum.photos/200/300")
+                .then(response => {
+                    const image = response.url;
+                    document.getElementById("display").innerHTML = "<img src=" + image + ">"
+                    
+                }).catch(error => console.error("Error fetching the image:", error))
+        }
+    </script>           
+</body>
+</html>
